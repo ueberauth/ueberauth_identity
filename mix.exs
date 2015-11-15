@@ -1,18 +1,18 @@
-defmodule UeberIdentity.Mixfile do
+defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
   @version "0.1.0"
 
   def project do
-    [app: :ueber_identity,
+    [app: :ueberauth_identity,
      version: @version,
      name: "Ueber Identity",
      package: package,
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     source_url: "https://github.com/hassox/ueber_identity",
-     homepage_url: "https://github.com/hassox/ueber_identity",
+     source_url: "https://github.com/hassox/ueberauth_identity",
+     homepage_url: "https://github.com/hassox/ueberauth_identity",
      description: description,
      deps: deps,
      docs: docs]
@@ -49,6 +49,6 @@ defmodule UeberIdentity.Mixfile do
     [files: ["lib", "mix.ex", "README.md", "LICENSE"],
       maintainers: ["Daniel Neighman"],
       licenses: ["MIT"],
-      links: %{github: "https://github.com/hassox/ueber_identity"}]
+      links: %{github: "https://github.com/hassox/ueberauth_identity"}]
   end
 end

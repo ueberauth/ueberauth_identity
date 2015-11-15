@@ -1,6 +1,6 @@
-defmodule UeberIdentityTest do
+defmodule UeberauthIdentityTest do
   use ExUnit.Case
-  doctest UeberIdentity
+  doctest UeberauthIdentity
 
   test "the truth" do
     assert 1 + 1 == 2
