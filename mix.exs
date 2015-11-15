@@ -1,12 +1,12 @@
 defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
 
   def project do
     [app: :ueberauth_identity,
      version: @version,
-     name: "Ueber Identity",
+     name: "Üeber Identity",
      package: package,
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
@@ -42,7 +42,7 @@ defmodule UeberauthIdentity.Mixfile do
   end
 
   defp description do
-    "An Ueberauth strategy for basic username/password"
+    "An Üeberauth strategy for basic username/password"
   end
 
   defp package do

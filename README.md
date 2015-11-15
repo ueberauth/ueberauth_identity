@@ -1,17 +1,20 @@
-# UeberIdentity
+# ÜeberIdentity
 
-Implements a simple strategy for Ueberauth useful for username/password
+Implements a simple strategy for Üeberauth useful for username/password
 strategies.
 
 Add to the config
 
-    config :ueberauth, Ueberauth,
-      providers: [
-        identity: { Uerberauth.Strategy.Identity, [] }
-      ]
+````elixir
 
-    # in your pipeline
-    Ueberauth.plug "/auth"
+config :ueberauth, Ueberauth,
+  providers: [
+    identity: { Uerberauth.Strategy.Identity, [] }
+  ]
+
+# in your pipeline
+Ueberauth.plug "/auth"
+````
 
 This will setup the request and callback phases at `/auth/identity` and
 `/auth/identity/callback`.
@@ -19,28 +22,34 @@ This will setup the request and callback phases at `/auth/identity` and
 You can modify the fields used to complete the `Ueberauth.Auth` struct by
 passing options in your configuration.
 
-    config :ueberauth, Ueberauth,
-      providers: [
-        identity: { Uerberauth.Strategy.Identity, [uid_field: :username, nickname_field: :username] }
-      ]
+````elixir
+config :ueberauth, Ueberauth,
+  providers: [
+    identity: { Uerberauth.Strategy.Identity, [uid_field: :username, nickname_field: :username] }
+  ]
+````
 
 You can change the http method for the callback with the `:methods` option
 
-    config :ueberauth, Ueberauth,
-      providers: [
-        identity: { Uerberauth.Strategy.Identity, [methods: ["POST"]] }
-      ]
+````elixir
+config :ueberauth, Ueberauth,
+  providers: [
+    identity: { Uerberauth.Strategy.Identity, [methods: ["POST"]] }
+  ]
+````
 
 Inside your request phase handler `/auth/identity` you should implement a form
 or something similar to collect the required information.
 
 Then in your callback you will have access to the `Ueberauth.Auth` struct
 
-    get "/auth/identity/callback" do
-      auth = conn.assigns.ueberauth_auth
-      # lookup or create your user
-      # |> Guardian.Plug.sign_in(user, :browser)
-    end
+````elixir
+get "/auth/identity/callback" do
+  auth = conn.assigns.ueberauth_auth
+  # lookup or create your user
+  # |> Guardian.Plug.sign_in(user, :browser)
+end
+````
 
 ## Installation
 
@@ -48,16 +57,11 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
   1. Add ueber_identity to your list of dependencies in `mix.exs`:
 
-        def deps do
-          [{:ueber_identity, "~> 0.0.1"}]
-        end
-
-  2. Ensure ueber_identity is started before your application:
-
-        def application do
-          [applications: [:ueber_identity]]
-        end
-
+````elixir
+def deps do
+  [{:ueber_identity, "~> 0.0.1"}]
+end
+````
 
 ## License
 
