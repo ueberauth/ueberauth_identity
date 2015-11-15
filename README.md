@@ -3,22 +3,6 @@
 Implements a simple strategy for Ueberauth useful for username/password
 strategies.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add ueber_identity to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:ueber_identity, "~> 0.0.1"}]
-        end
-
-  2. Ensure ueber_identity is started before your application:
-
-        def application do
-          [applications: [:ueber_identity]]
-        end
-
 Add to the config
 
     config :ueberauth, Ueberauth,
@@ -57,6 +41,22 @@ Then in your callback you will have access to the `Ueberauth.Auth` struct
       # lookup or create your user
       # |> Guardian.Plug.sign_in(user, :browser)
     end
+
+## Installation
+
+If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+
+  1. Add ueber_identity to your list of dependencies in `mix.exs`:
+
+        def deps do
+          [{:ueber_identity, "~> 0.0.1"}]
+        end
+
+  2. Ensure ueber_identity is started before your application:
+
+        def application do
+          [applications: [:ueber_identity]]
+        end
 
 
 ## License
