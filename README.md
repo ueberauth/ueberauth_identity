@@ -1,6 +1,6 @@
-# ÜeberIdentity
+# ÜberauthIdentity
 
-Implements a simple strategy for Üeberauth useful for username/password
+Implements a simple strategy for Ueberauth useful for username/password
 strategies.
 
 Add to the config
@@ -55,11 +55,11 @@ end
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
-  1. Add ueber_identity to your list of dependencies in `mix.exs`:
+  1. Add ueberauth_identity to your list of dependencies in `mix.exs`:
 
 ````elixir
 def deps do
-  [{:ueber_identity, "~> 0.0.1"}]
+  [{:ueberauth_identity, "~> 0.0.1"}]
 end
 ````
 
