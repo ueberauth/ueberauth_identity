@@ -1,7 +1,7 @@
 defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
-  @version "0.1.2"
+  @version "0.1.3"
 
   def project do
     [app: :ueberauth_identity,
@@ -46,7 +46,7 @@ defmodule UeberauthIdentity.Mixfile do
   end
 
   defp package do
-    [files: ["lib", "mix.ex", "README.md", "LICENSE"],
+    [files: ["lib", "mix.exs", "README.md", "LICENSE"],
       maintainers: ["Daniel Neighman"],
       licenses: ["MIT"],
       links: %{github: "https://github.com/hassox/ueberauth_identity"}]
