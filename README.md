@@ -8,7 +8,7 @@
 
     ```elixir
     def deps do
-      [{:ueberauth_identity, "~> 0.1"}]
+      [{:ueberauth_identity, "~> 0.2"}]
     end
     ```
 

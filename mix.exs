@@ -1,7 +1,8 @@
 defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
-  @version "0.1.3"
+  @version "0.2.0"
+  @url "https://github.com/ueberauth/ueberauth_identity"
 
   def project do
     [app: :ueberauth_identity,
@@ -11,20 +12,20 @@ defmodule UeberauthIdentity.Mixfile do
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     source_url: "https://github.com/hassox/ueberauth_identity",
-     homepage_url: "https://github.com/hassox/ueberauth_identity",
+     source_url: @url,
+     homepage_url: @url,
      description: description,
      deps: deps,
      docs: docs]
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :ueberauth]]
   end
 
   defp deps do
     [
-      {:ueberauth, "~> 0.1"},
+      {:ueberauth, "~> 0.2"},
       {:plug, "~> 1.0"},
 
       # docs dependencies
@@ -49,6 +50,6 @@ defmodule UeberauthIdentity.Mixfile do
     [files: ["lib", "mix.exs", "README.md", "LICENSE"],
       maintainers: ["Daniel Neighman"],
       licenses: ["MIT"],
-      links: %{github: "https://github.com/hassox/ueberauth_identity"}]
+      links: %{github: @url}]
   end
 end
