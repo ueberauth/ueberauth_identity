@@ -74,6 +74,25 @@
 
 For an example implementation see the [Überauth Example](https://github.com/ueberauth/ueberauth_example) application.
 
+## Nested form attributes
+
+Sometimes it's convenient to nest the returned params under a namespace. For
+example if you're using a "user" form, your params may come back as:
+
+```elixir
+  %{ "user" => { "email" => "my@email.com" … }
+```
+
+If you're using a nested set of attributes like this you'll need to let
+Überauth Identity know about it. To do this set an option in your config:
+
+```elixir
+    config :ueberauth, Ueberauth,
+      providers: [
+        identity: {Ueberauth.Strategy.Identity, [param_nesting: "user"]}
+      ]
+```
+
 ## Calling
 
 Depending on the configured url you can initial the request through:

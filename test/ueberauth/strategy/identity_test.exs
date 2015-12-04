@@ -23,6 +23,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
       password: "sekrit",
       password_confirmation: "sekrit"
     }
+
     query = URI.encode_query(opts)
 
     conn = conn(:get, "/auth/identity/callback?#{query}") |> SpecRouter.call(@router)
@@ -63,16 +64,16 @@ defmodule Ueberauth.Strategy.IdentityTest do
 
   test "overwridden callback phase" do
     opts = %{
-      email: "foo@example.com",
-      name: "Fred Flintstone",
-      first_name: "Fred",
-      last_name: "Flintstone",
-      username: "freddy",
-      phone: "555-555-5555",
-      description: "Cave man",
-      location: "Bedrock",
-      password: "sekrit",
-      password_confirmation: "sekrit"
+      "user[email]" => "foo@example.com",
+      "user[name]" => "Fred Flintstone",
+      "user[first_name]" => "Fred",
+      "user[last_name]" => "Flintstone",
+      "user[username]" => "freddy",
+      "user[phone]" =>  "555-555-5555",
+      "user[description]" => "Cave man",
+      "user[location]" => "Bedrock",
+      "user[password]" => "sekrit",
+      "user[password_confirmation]" => "sekrit"
     }
     query = URI.encode_query(opts)
 
@@ -84,16 +85,16 @@ defmodule Ueberauth.Strategy.IdentityTest do
 
     assert auth.provider == :identity_with_options
     assert auth.strategy == Ueberauth.Strategy.Identity
-    assert auth.uid == opts.username
+    assert auth.uid == Map.get(opts, "user[username]")
 
     info = auth.info
-    assert info.email == opts.email
-    assert info.name == opts.name
-    assert info.first_name == opts.first_name
-    assert info.last_name == opts.last_name
-    assert info.nickname == opts.username
-    assert info.phone == opts.phone
-    assert info.location == opts.location
-    assert info.description == opts.description
+    assert info.email == Map.get(opts, "user[email]")
+    assert info.name == Map.get(opts, "user[name]")
+    assert info.first_name == Map.get(opts, "user[first_name]")
+    assert info.last_name == Map.get(opts, "user[last_name]")
+    assert info.nickname == Map.get(opts, "user[username]")
+    assert info.phone == Map.get(opts, "user[phone]")
+    assert info.location == Map.get(opts, "user[location]")
+    assert info.description == Map.get(opts, "user[description]")
   end
 end
