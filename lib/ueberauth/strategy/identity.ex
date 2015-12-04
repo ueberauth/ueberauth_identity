@@ -9,7 +9,8 @@ defmodule Ueberauth.Strategy.Identity do
                           location_field: :location,
                           description_field: :description,
                           password_field: :password,
-                          password_confirmation_field: :password_confirmation
+                          password_confirmation_field: :password_confirmation,
+                          param_nesting: nil
 
   alias Ueberauth.Auth.Info
   alias Ueberauth.Auth.Credentials
@@ -52,6 +53,17 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp param_for(conn, name) do
-    conn.params[to_string(option(conn, name))]
+    param_for(conn, name, option(conn, :param_nesting))
+  end
+
+  defp param_for(conn, name, nil) do
+    Map.get(conn.params, to_string(option(conn, name)))
+  end
+
+  defp param_for(conn, name, nesting) do
+    case Map.get(conn.params, to_string(nesting)) do
+      nil -> nil
+      nested -> Map.get(nested, to_string(option(conn, name)))
+    end
   end
 end
