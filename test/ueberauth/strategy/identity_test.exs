@@ -6,7 +6,10 @@ defmodule Ueberauth.Strategy.IdentityTest do
   @router SpecRouter.init([])
 
   test "request phase" do
-    conn = conn(:get, "/auth/identity") |> SpecRouter.call(@router)
+    conn = :get
+           |> conn("/auth/identity")
+           |> SpecRouter.call(@router)
+
     assert conn.resp_body == "identity request"
   end
 
@@ -26,7 +29,9 @@ defmodule Ueberauth.Strategy.IdentityTest do
 
     query = URI.encode_query(opts)
 
-    conn = conn(:get, "/auth/identity/callback?#{query}") |> SpecRouter.call(@router)
+    conn = :get
+           |> conn("/auth/identity/callback?#{query}")
+           |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity callback"
 
@@ -77,7 +82,9 @@ defmodule Ueberauth.Strategy.IdentityTest do
     }
     query = URI.encode_query(opts)
 
-    conn = conn(:get, "/auth/identity_with_options/callback?#{query}") |> SpecRouter.call(@router)
+    conn = :get
+           |> conn("/auth/identity_with_options/callback?#{query}")
+           |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity with options callback"
 
@@ -106,7 +113,9 @@ defmodule Ueberauth.Strategy.IdentityTest do
 
     query = URI.encode_query(opts)
 
-    conn = conn(:get, "/auth/identity/callback?#{query}") |> SpecRouter.call(@router)
+    conn = :get
+           |> conn("/auth/identity/callback?#{query}")
+           |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity callback"
 

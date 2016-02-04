@@ -10,10 +10,14 @@ defmodule SpecRouter do
   plug :dispatch
 
   get "/auth/identity", do: send_resp(conn, 200, "identity request")
-  get "/auth/identity_with_options", do: send_resp(conn, 200, "identity with options request")
+  get "/auth/identity_with_options" do
+    send_resp(conn, 200, "identity with options request")
+  end
 
   get "/auth/identity/callback", do: send_resp(conn, 200, "identity callback")
-  get "/auth/identity_with_options/callback", do: send_resp(conn, 200, "identity with options callback")
+  get "/auth/identity_with_options/callback" do
+    send_resp(conn, 200, "identity with options callback")
+  end
 end
 
 ExUnit.start()

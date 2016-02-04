@@ -1,4 +1,8 @@
 defmodule Ueberauth.Strategy.Identity do
+  @moduledoc """
+  A username/password strategy for Ueberauth
+  """
+
   use Ueberauth.Strategy, uid_field: :email,
                           email_field: :email,
                           name_field: :name,
@@ -58,7 +62,8 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp param_for(conn, name, nil) do
-    Map.get(conn.params, to_string(option(conn, name)))
+    conn.params
+    |> Map.get(to_string(option(conn, name)))
     |> scrub_param(option(conn, :scrub_params))
   end
 
@@ -66,7 +71,8 @@ defmodule Ueberauth.Strategy.Identity do
     case Map.get(conn.params, to_string(nesting)) do
       nil -> nil
       nested ->
-        Map.get(nested, to_string(option(conn, name)))
+        nested
+        |> Map.get(to_string(option(conn, name)))
         |> scrub_param(option(conn, :scrub_params))
     end
   end
