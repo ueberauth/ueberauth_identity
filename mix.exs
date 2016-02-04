@@ -31,7 +31,8 @@ defmodule UeberauthIdentity.Mixfile do
 
       # docs dependencies
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.1", only: :dev}
+      {:ex_doc, "~> 0.1", only: :dev},
+      {:dogma, ">= 0.0.0", only: [:dev, :test]}
     ]
   end
 
