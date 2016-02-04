@@ -62,7 +62,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert extra.raw_info["description"] == opts.description
   end
 
-  test "overwridden callback phase" do
+  test "overridden callback phase" do
     opts = %{
       "user[email]" => "foo@example.com",
       "user[name]" => "Fred Flintstone",
