@@ -97,4 +97,31 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert info.location == Map.get(opts, "user[location]")
     assert info.description == Map.get(opts, "user[description]")
   end
+
+  test "scrub params" do
+    opts = %{
+      email: "foo@example.com",
+      name: "",
+    }
+
+    query = URI.encode_query(opts)
+
+    conn = conn(:get, "/auth/identity/callback?#{query}") |> SpecRouter.call(@router)
+
+    assert conn.resp_body == "identity callback"
+
+    auth = conn.assigns.ueberauth_auth
+
+    assert auth.provider == :identity
+    assert auth.strategy == Ueberauth.Strategy.Identity
+    assert auth.uid == opts.email
+
+    info = auth.info
+    assert info.email == opts.email
+    assert info.name == nil
+
+    extra = auth.extra
+    assert extra.raw_info["email"] == opts.email
+    assert extra.raw_info["name"] == opts.name
+  end
 end

@@ -10,7 +10,8 @@ defmodule Ueberauth.Strategy.Identity do
                           description_field: :description,
                           password_field: :password,
                           password_confirmation_field: :password_confirmation,
-                          param_nesting: nil
+                          param_nesting: nil,
+                          scrub_params: true
 
   alias Ueberauth.Auth.Info
   alias Ueberauth.Auth.Credentials
@@ -58,12 +59,24 @@ defmodule Ueberauth.Strategy.Identity do
 
   defp param_for(conn, name, nil) do
     Map.get(conn.params, to_string(option(conn, name)))
+    |> scrub_param(option(conn, :scrub_params))
   end
 
   defp param_for(conn, name, nesting) do
     case Map.get(conn.params, to_string(nesting)) do
       nil -> nil
-      nested -> Map.get(nested, to_string(option(conn, name)))
+      nested ->
+        Map.get(nested, to_string(option(conn, name)))
+        |> scrub_param(option(conn, :scrub_params))
     end
   end
+
+  defp scrub_param(param, false), do: param
+  defp scrub_param(param, _) do
+    if scrub?(param), do: nil, else: param
+  end
+
+  defp scrub?(" " <> rest), do: scrub?(rest)
+  defp scrub?(""), do: true
+  defp scrub?(_), do: false
 end

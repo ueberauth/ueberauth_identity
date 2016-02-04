@@ -93,6 +93,19 @@ If you're using a nested set of attributes like this you'll need to let
       ]
 ```
 
+## Params scrubbing
+
+By default Überauth Identity will be changing empty values from the returned
+params to nil.
+If you want to disable that behaviour set the following option in your config:
+
+```elixir
+    config :ueberauth, Ueberauth,
+      providers: [
+        identity: {Ueberauth.Strategy.Identity, [scrub_params: false]}
+      ]
+```
+
 ## Calling
 
 Depending on the configured url you can initial the request through:
