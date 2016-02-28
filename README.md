@@ -33,7 +33,9 @@
     ```elixir
     config :ueberauth, Ueberauth,
       providers: [
-        identity: {Ueberauth.Strategy.Identity, []}
+        identity: {Ueberauth.Strategy.Identity, [
+          callback_methods: ["POST"]
+        ]}
       ]
     ```
 
