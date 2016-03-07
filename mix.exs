@@ -1,7 +1,7 @@
 defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
-  @version "0.2.2"
+  @version "0.2.3"
   @url "https://github.com/ueberauth/ueberauth_identity"
 
   def project do

@@ -1,3 +1,7 @@
+# v 0.2.3
+
+* Remove unused Poison dependency
+
 # v 0.2.2
 
 * Scrub parameters
