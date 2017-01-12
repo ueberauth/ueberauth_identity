@@ -25,13 +25,14 @@ defmodule UeberauthIdentity.Mixfile do
 
   defp deps do
     [
-      {:ueberauth, "~> 0.2"},
       {:plug, "~> 1.0"},
+      {:ueberauth, "~> 0.2"},
 
-      # docs dependencies
+      # dev/test dependencies
+      {:credo, "~> 0.5", only: [:dev, :test]},
+      {:dogma, ">= 0.0.0", only: [:dev, :test]},
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.1", only: :dev},
-      {:dogma, ">= 0.0.0", only: [:dev, :test]}
     ]
   end
 
