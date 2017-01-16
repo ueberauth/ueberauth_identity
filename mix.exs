@@ -8,15 +8,15 @@ defmodule UeberauthIdentity.Mixfile do
     [app: :ueberauth_identity,
      version: @version,
      name: "Ueberauth Identity",
-     package: package,
+     package: package(),
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      source_url: @url,
      homepage_url: @url,
-     description: description,
-     deps: deps,
-     docs: docs]
+     description: description(),
+     deps: deps(),
+     docs: docs()]
   end
 
   def application do
@@ -37,7 +37,7 @@ defmodule UeberauthIdentity.Mixfile do
   end
 
   defp docs do
-    [extras: docs_extras, main: "extra-readme"]
+    [extras: docs_extras(), main: "extra-readme"]
   end
 
   defp docs_extras do

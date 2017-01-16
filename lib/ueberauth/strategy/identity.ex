@@ -54,7 +54,7 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp option(conn, name) do
-    Dict.get(options(conn), name, Dict.get(default_options, name))
+    Dict.get(options(conn), name, Dict.get(default_options(), name))
   end
 
   defp param_for(conn, name) do
