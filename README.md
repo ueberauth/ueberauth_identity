@@ -1,7 +1,7 @@
 # Überauth Identity
 [![Build Status][travis-img]][travis] [![Hex Version][hex-img]][hex] [![License][license-img]][license]
 
-[travis-img]: https://travis-ci.org/ueberauth/ueberauth_identity.png?branch=master
+[travis-img]: https://travis-ci.org/ueberauth/ueberauth_identity.svg?branch=master
 [travis]: https://travis-ci.org/ueberauth/ueberauth_identity
 [hex-img]: https://img.shields.io/hexpm/v/ueberauth_identity.svg
 [hex]: https://hex.pm/packages/ueberauth_identity
