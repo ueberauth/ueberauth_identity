@@ -9,7 +9,7 @@ defmodule UeberauthIdentity.Mixfile do
      version: @version,
      name: "Ueberauth Identity",
      package: package(),
-     elixir: "~> 1.1",
+     elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      source_url: @url,
