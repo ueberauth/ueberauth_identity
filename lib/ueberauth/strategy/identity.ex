@@ -68,7 +68,10 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp param_for(conn, name, nesting) when is_list(nesting) do
-    case Kernel.get_in(conn.params, Enum.map(nesting, fn(x) -> to_string(x) end)) do
+    case Kernel.get_in(
+      conn.params,
+      Enum.map(nesting, fn(x) -> to_string(x) end)
+    ) do
       nil -> nil
       nested ->
         nested
