@@ -18,6 +18,9 @@ defmodule SpecRouter do
   get "/auth/identity_with_options/callback" do
     send_resp(conn, 200, "identity with options callback")
   end
+  get "/auth/identity_with_nested_options/callback" do
+    send_resp(conn, 200, "identity with nested options callback")
+  end
 end
 
 ExUnit.start()
