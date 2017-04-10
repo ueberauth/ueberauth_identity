@@ -10,5 +10,11 @@ config :ueberauth, Ueberauth,
         nickname_field: :username,
         param_nesting: "user"
       ]
+    },
+    identity_with_nested_options: {
+      Ueberauth.Strategy.Identity,
+      [
+        param_nesting: ["data", "attributes"]
+      ]
     }
   ]

@@ -105,6 +105,44 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert info.description == Map.get(opts, "user[description]")
   end
 
+  test "callback phase with nested params" do
+    opts = %{
+      "data[attributes][email]" => "foo@example.com",
+      "data[attributes][name]" => "Fred Flintstone",
+      "data[attributes][first_name]" => "Fred",
+      "data[attributes][last_name]" => "Flintstone",
+      "data[attributes][username]" => "freddy",
+      "data[attributes][phone]" =>  "555-555-5555",
+      "data[attributes][description]" => "Cave man",
+      "data[attributes][location]" => "Bedrock",
+      "data[attributes][password]" => "sekrit",
+      "data[attributes][password_confirmation]" => "sekrit"
+    }
+    query = URI.encode_query(opts)
+
+    conn = :get
+           |> conn("/auth/identity_with_nested_options/callback?#{query}")
+           |> SpecRouter.call(@router)
+
+    assert conn.resp_body == "identity with nested options callback"
+
+    auth = conn.assigns.ueberauth_auth
+
+    assert auth.provider == :identity_with_nested_options
+    assert auth.strategy == Ueberauth.Strategy.Identity
+    assert auth.uid == Map.get(opts, "data[attributes][email]")
+
+    info = auth.info
+    assert info.email == Map.get(opts, "data[attributes][email]")
+    assert info.name == Map.get(opts, "data[attributes][name]")
+    assert info.first_name == Map.get(opts, "data[attributes][first_name]")
+    assert info.last_name == Map.get(opts, "data[attributes][last_name]")
+    assert info.nickname == Map.get(opts, "data[attributes][nickname]")
+    assert info.phone == Map.get(opts, "data[attributes][phone]")
+    assert info.location == Map.get(opts, "data[attributes][location]")
+    assert info.description == Map.get(opts, "data[attributes][description]")
+  end
+
   test "scrub params" do
     opts = %{
       email: "foo@example.com",

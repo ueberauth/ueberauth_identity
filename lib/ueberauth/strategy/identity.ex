@@ -68,7 +68,11 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp param_for(conn, name, nesting) do
-    case Map.get(conn.params, to_string(nesting)) do
+    attrs = nesting
+    |> List.wrap
+    |> Enum.map(fn(item) -> to_string(item) end)
+
+    case Kernel.get_in(conn.params, attrs) do
       nil -> nil
       nested ->
         nested
