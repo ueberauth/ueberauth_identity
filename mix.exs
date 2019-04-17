@@ -5,18 +5,20 @@ defmodule UeberauthIdentity.Mixfile do
   @url "https://github.com/ueberauth/ueberauth_identity"
 
   def project do
-    [app: :ueberauth_identity,
-     version: @version,
-     name: "Ueberauth Identity",
-     package: package(),
-     elixir: "~> 1.2",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     source_url: @url,
-     homepage_url: @url,
-     description: description(),
-     deps: deps(),
-     docs: docs()]
+    [
+      app: :ueberauth_identity,
+      version: @version,
+      name: "Ueberauth Identity",
+      package: package(),
+      elixir: "~> 1.2",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      source_url: @url,
+      homepage_url: @url,
+      description: description(),
+      deps: deps(),
+      docs: docs()
+    ]
   end
 
   def application do
@@ -32,7 +34,7 @@ defmodule UeberauthIdentity.Mixfile do
       {:credo, "~> 1.0", only: [:dev, :test]},
       {:dogma, ">= 0.0.0", only: [:dev, :test]},
       {:earmark, "~> 1.0", only: :dev},
-      {:ex_doc, "~> 0.20", only: :dev},
+      {:ex_doc, "~> 0.20", only: :dev}
     ]
   end
 
@@ -49,9 +51,6 @@ defmodule UeberauthIdentity.Mixfile do
   end
 
   defp package do
-    [files: ["lib", "mix.exs", "README.md", "LICENSE"],
-      maintainers: ["Daniel Neighman"],
-      licenses: ["MIT"],
-      links: %{github: @url}]
+    [files: ["lib", "mix.exs", "README.md", "LICENSE"], maintainers: ["Daniel Neighman"], licenses: ["MIT"], links: %{github: @url}]
   end
 end

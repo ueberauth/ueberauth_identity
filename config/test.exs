@@ -2,7 +2,7 @@ use Mix.Config
 
 config :ueberauth, Ueberauth,
   providers: [
-    identity: { Ueberauth.Strategy.Identity, [] },
+    identity: {Ueberauth.Strategy.Identity, []},
     identity_with_options: {
       Ueberauth.Strategy.Identity,
       [

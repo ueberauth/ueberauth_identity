@@ -3,19 +3,20 @@ defmodule Ueberauth.Strategy.Identity do
   A username/password strategy for Ueberauth
   """
 
-  use Ueberauth.Strategy, uid_field: :email,
-                          email_field: :email,
-                          name_field: :name,
-                          first_name_field: :first_name,
-                          last_name_field: :last_name,
-                          nickname_field: :nickname,
-                          phone_field: :phone,
-                          location_field: :location,
-                          description_field: :description,
-                          password_field: :password,
-                          password_confirmation_field: :password_confirmation,
-                          param_nesting: nil,
-                          scrub_params: true
+  use Ueberauth.Strategy,
+    uid_field: :email,
+    email_field: :email,
+    name_field: :name,
+    first_name_field: :first_name,
+    last_name_field: :last_name,
+    nickname_field: :nickname,
+    phone_field: :phone,
+    location_field: :location,
+    description_field: :description,
+    password_field: :password,
+    password_confirmation_field: :password_confirmation,
+    param_nesting: nil,
+    scrub_params: true
 
   alias Ueberauth.Auth.Info
   alias Ueberauth.Auth.Credentials
@@ -68,12 +69,15 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp param_for(conn, name, nesting) do
-    attrs = nesting
-    |> List.wrap
-    |> Enum.map(fn(item) -> to_string(item) end)
+    attrs =
+      nesting
+      |> List.wrap()
+      |> Enum.map(fn item -> to_string(item) end)
 
     case Kernel.get_in(conn.params, attrs) do
-      nil -> nil
+      nil ->
+        nil
+
       nested ->
         nested
         |> Map.get(to_string(option(conn, name)))
@@ -82,6 +86,7 @@ defmodule Ueberauth.Strategy.Identity do
   end
 
   defp scrub_param(param, false), do: param
+
   defp scrub_param(param, _) do
     if scrub?(param), do: nil, else: param
   end

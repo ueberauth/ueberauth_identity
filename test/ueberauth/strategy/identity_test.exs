@@ -6,9 +6,10 @@ defmodule Ueberauth.Strategy.IdentityTest do
   @router SpecRouter.init([])
 
   test "request phase" do
-    conn = :get
-           |> conn("/auth/identity")
-           |> SpecRouter.call(@router)
+    conn =
+      :get
+      |> conn("/auth/identity")
+      |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity request"
   end
@@ -29,9 +30,10 @@ defmodule Ueberauth.Strategy.IdentityTest do
 
     query = URI.encode_query(opts)
 
-    conn = :get
-           |> conn("/auth/identity/callback?#{query}")
-           |> SpecRouter.call(@router)
+    conn =
+      :get
+      |> conn("/auth/identity/callback?#{query}")
+      |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity callback"
 
@@ -74,17 +76,19 @@ defmodule Ueberauth.Strategy.IdentityTest do
       "user[first_name]" => "Fred",
       "user[last_name]" => "Flintstone",
       "user[username]" => "freddy",
-      "user[phone]" =>  "555-555-5555",
+      "user[phone]" => "555-555-5555",
       "user[description]" => "Cave man",
       "user[location]" => "Bedrock",
       "user[password]" => "sekrit",
       "user[password_confirmation]" => "sekrit"
     }
+
     query = URI.encode_query(opts)
 
-    conn = :get
-           |> conn("/auth/identity_with_options/callback?#{query}")
-           |> SpecRouter.call(@router)
+    conn =
+      :get
+      |> conn("/auth/identity_with_options/callback?#{query}")
+      |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity with options callback"
 
@@ -112,17 +116,19 @@ defmodule Ueberauth.Strategy.IdentityTest do
       "data[attributes][first_name]" => "Fred",
       "data[attributes][last_name]" => "Flintstone",
       "data[attributes][username]" => "freddy",
-      "data[attributes][phone]" =>  "555-555-5555",
+      "data[attributes][phone]" => "555-555-5555",
       "data[attributes][description]" => "Cave man",
       "data[attributes][location]" => "Bedrock",
       "data[attributes][password]" => "sekrit",
       "data[attributes][password_confirmation]" => "sekrit"
     }
+
     query = URI.encode_query(opts)
 
-    conn = :get
-           |> conn("/auth/identity_with_nested_options/callback?#{query}")
-           |> SpecRouter.call(@router)
+    conn =
+      :get
+      |> conn("/auth/identity_with_nested_options/callback?#{query}")
+      |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity with nested options callback"
 
@@ -146,14 +152,15 @@ defmodule Ueberauth.Strategy.IdentityTest do
   test "scrub params" do
     opts = %{
       email: "foo@example.com",
-      name: "",
+      name: ""
     }
 
     query = URI.encode_query(opts)
 
-    conn = :get
-           |> conn("/auth/identity/callback?#{query}")
-           |> SpecRouter.call(@router)
+    conn =
+      :get
+      |> conn("/auth/identity/callback?#{query}")
+      |> SpecRouter.call(@router)
 
     assert conn.resp_body == "identity callback"
 
