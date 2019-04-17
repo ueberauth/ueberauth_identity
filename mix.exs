@@ -1,7 +1,7 @@
 defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
-  @version "0.2.3"
+  @version "0.2.4"
   @url "https://github.com/ueberauth/ueberauth_identity"
 
   def project do
@@ -26,13 +26,13 @@ defmodule UeberauthIdentity.Mixfile do
   defp deps do
     [
       {:plug, "~> 1.0"},
-      {:ueberauth, "~> 0.2"},
+      {:ueberauth, "~> 0.6"},
 
       # dev/test dependencies
-      {:credo, "~> 0.5", only: [:dev, :test]},
+      {:credo, "~> 1.0", only: [:dev, :test]},
       {:dogma, ">= 0.0.0", only: [:dev, :test]},
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.1", only: :dev},
+      {:earmark, "~> 1.0", only: :dev},
+      {:ex_doc, "~> 0.20", only: :dev},
     ]
   end
 
