@@ -120,7 +120,7 @@ If you want to disable that behaviour set the following option in your config:
 
 Depending on the configured url you can initial the request through:
 
-    /auth/identity
+    /auth/identity/callback
 
 ## License
 
