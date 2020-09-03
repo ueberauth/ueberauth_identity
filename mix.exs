@@ -39,7 +39,7 @@ defmodule UeberauthIdentity.Mixfile do
   end
 
   defp docs do
-    [extras: docs_extras(), main: "extra-readme"]
+    [extras: docs_extras(), main: "readme"]
   end
 
   defp docs_extras do
