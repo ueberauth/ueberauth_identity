@@ -1,28 +1,27 @@
 defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
+  @source_url "https://github.com/ueberauth/ueberauth_identity"
   @version "0.3.0"
-  @url "https://github.com/ueberauth/ueberauth_identity"
 
   def project do
     [
       app: :ueberauth_identity,
       version: @version,
-      name: "Ueberauth Identity",
+      name: "Üeberauth Identity",
       package: package(),
       elixir: "~> 1.2",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      source_url: @url,
-      homepage_url: @url,
-      description: description(),
       deps: deps(),
       docs: docs()
     ]
   end
 
   def application do
-    [applications: [:logger, :ueberauth]]
+    [
+      applications: [:logger, :ueberauth]
+    ]
   end
 
   defp deps do
@@ -33,24 +32,35 @@ defmodule UeberauthIdentity.Mixfile do
       # dev/test dependencies
       {:credo, "~> 1.0", only: [:dev, :test]},
       {:dogma, ">= 0.0.0", only: [:dev, :test]},
-      {:earmark, "~> 1.0", only: :dev},
-      {:ex_doc, "~> 0.20", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 
   defp docs do
-    [extras: docs_extras(), main: "readme"]
-  end
-
-  defp docs_extras do
-    ["README.md"]
-  end
-
-  defp description do
-    "An Ueberauth strategy for basic username/password"
+    [
+      extras: [
+        "CHANGELOG.md",
+        "CONTRIBUTING.md": [title: "Contributing"],
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "#{@version}",
+      formatters: ["html"]
+    ]
   end
 
   defp package do
-    [files: ["lib", "mix.exs", "README.md", "LICENSE"], maintainers: ["Daniel Neighman"], licenses: ["MIT"], links: %{github: @url}]
+    [
+      description: "An Ueberauth strategy for basic username/password",
+      files: ["lib", "mix.exs", "CHANGELOG.md", "CONTRIBUTING.md", "LICENSE.md", "README.md"],
+      maintainers: ["Daniel Neighman"],
+      licenses: ["MIT"],
+      links: %{
+        "Changelog" => "https://hexdocs.pm/ueberauth_identity/changelog.html",
+        "GitHub" => @source_url
+      }
+    ]
   end
 end
