@@ -1,6 +1,6 @@
 defmodule Ueberauth.Strategy.Identity do
   @moduledoc """
-  A username/password strategy for Ueberauth
+  A username/password strategy for Ueberauth.
   """
 
   use Ueberauth.Strategy,
