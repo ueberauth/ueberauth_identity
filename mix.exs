@@ -2,7 +2,7 @@ defmodule UeberauthIdentity.Mixfile do
   use Mix.Project
 
   @source_url "https://github.com/ueberauth/ueberauth_identity"
-  @version "0.3.0"
+  @version "0.4.0"
 
   def project do
     [
@@ -27,7 +27,7 @@ defmodule UeberauthIdentity.Mixfile do
   defp deps do
     [
       {:plug, "~> 1.0"},
-      {:ueberauth, "~> 0.6"},
+      {:ueberauth, "~> 0.7"},
 
       # dev/test dependencies
       {:credo, "~> 1.0", only: [:dev, :test]},

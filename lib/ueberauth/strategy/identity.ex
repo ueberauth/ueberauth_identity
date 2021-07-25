@@ -4,6 +4,7 @@ defmodule Ueberauth.Strategy.Identity do
   """
 
   use Ueberauth.Strategy,
+    ignores_csrf_attack: true,
     uid_field: :email,
     email_field: :email,
     name_field: :name,
