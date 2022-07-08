@@ -14,6 +14,7 @@ defmodule Ueberauth.Strategy.Identity do
     phone_field: :phone,
     location_field: :location,
     description_field: :description,
+    birthday_field: :birthday,
     password_field: :password,
     password_confirmation_field: :password_confirmation,
     param_nesting: nil,
@@ -37,7 +38,8 @@ defmodule Ueberauth.Strategy.Identity do
       nickname: param_for(conn, :nickname_field),
       phone: param_for(conn, :phone_field),
       location: param_for(conn, :location_field),
-      description: param_for(conn, :description_field)
+      description: param_for(conn, :description_field),
+      birthday: param_for(conn, :birthday_field)
     )
   end
 

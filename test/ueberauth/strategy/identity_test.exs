@@ -23,6 +23,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
       nickname: "freddy",
       phone: "555-555-5555",
       description: "Cave man",
+      birthday: "1963-05-04",
       location: "Bedrock",
       password: "sekrit",
       password_confirmation: "sekrit"
@@ -52,6 +53,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert info.phone == opts.phone
     assert info.location == opts.location
     assert info.description == opts.description
+    assert info.birthday == opts.birthday
 
     creds = auth.credentials
     assert creds.other.password == opts.password
@@ -67,6 +69,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert extra.raw_info["phone"] == opts.phone
     assert extra.raw_info["location"] == opts.location
     assert extra.raw_info["description"] == opts.description
+    assert extra.raw_info["birthday"] == opts.birthday
   end
 
   test "overridden callback phase" do
@@ -78,6 +81,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
       "user[username]" => "freddy",
       "user[phone]" => "555-555-5555",
       "user[description]" => "Cave man",
+      "user[birthday]" => "1963-05-04",
       "user[location]" => "Bedrock",
       "user[password]" => "sekrit",
       "user[password_confirmation]" => "sekrit"
@@ -107,6 +111,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert info.phone == Map.get(opts, "user[phone]")
     assert info.location == Map.get(opts, "user[location]")
     assert info.description == Map.get(opts, "user[description]")
+    assert info.birthday == Map.get(opts, "user[birthday]")
   end
 
   test "callback phase with nested params" do
@@ -118,6 +123,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
       "data[attributes][username]" => "freddy",
       "data[attributes][phone]" => "555-555-5555",
       "data[attributes][description]" => "Cave man",
+      "data[attributes][birthday]" => "1963-05-04",
       "data[attributes][location]" => "Bedrock",
       "data[attributes][password]" => "sekrit",
       "data[attributes][password_confirmation]" => "sekrit"
@@ -147,6 +153,7 @@ defmodule Ueberauth.Strategy.IdentityTest do
     assert info.phone == Map.get(opts, "data[attributes][phone]")
     assert info.location == Map.get(opts, "data[attributes][location]")
     assert info.description == Map.get(opts, "data[attributes][description]")
+    assert info.birthday == Map.get(opts, "data[attributes][birthday]")
   end
 
   test "scrub params" do
