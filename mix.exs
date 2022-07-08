@@ -30,7 +30,7 @@ defmodule UeberauthIdentity.Mixfile do
       {:ueberauth, "~> 0.7"},
 
       # dev/test dependencies
-      {:credo, "~> 1.0", only: [:dev, :test]},
+      {:credo, "~> 1.6", only: [:dev, :test]},
       {:dogma, ">= 0.0.0", only: [:dev, :test]},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
